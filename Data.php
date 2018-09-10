@@ -26,7 +26,7 @@ use PDO;
             $statusid,$created_at,$created_by,$updated_at,$updated_by;
 
         //fixed data var
-        var $prefix = 'INV';
+        var $prefix = 'INV',$sequence=false,$countzero=4;
 
         //search var
         var $search,$firstdate,$lastdate;
@@ -46,6 +46,37 @@ use PDO;
 		
 		private function generateID(){
             return Auth::uniqidNumeric($this->prefix);
+        }
+
+        private function queryGenerateID($table,$field){
+            $prefix = preg_replace("/[^A-Za-z0-9 ]/", '', $this->prefix);
+            $countprefix = strlen($prefix);
+            if ( $countprefix > 3) {
+                $newprefix = substr($prefix, 0, -($countprefix-3));
+            } else {
+                $newprefix = $prefix;
+            }
+            $format = $newprefix.date('Ymd');
+            $newcountzero = (int) Validation::integerOnly($this->countzero);
+            if (empty($newcountzero) || $newcountzero <= 0) $newcountzero = 1;
+            try{
+                $sql = "SELECT RIGHT(InvoiceID,".$newcountzero.") as AutoID
+                    FROM ".$table." 
+                    WHERE LEFT(".$field.",length('".$format."'))='".$format."'
+                    ORDER BY RIGHT(InvoiceID,".$newcountzero.") DESC Limit 1;";
+                $stmt = $this->db->prepare($sql);
+                if ($stmt->execute()) {
+                    if($stmt->rowCount()>0){
+                        $data = $stmt->fetch();
+                        $result = $format.str_pad(($data['AutoID']+1), $newcountzero, '0', STR_PAD_LEFT);
+                    } else {
+                        $result = $format.str_pad(1, $newcountzero, '0', STR_PAD_LEFT);
+                    }
+                }
+            } catch (PDOException $e){
+                $result = $this->generateID();
+            }
+            return $result;
         }
 
         /**
@@ -162,7 +193,13 @@ use PDO;
             $newfromfax = Validation::integerOnly($this->from_fax);
             $newtophone = Validation::integerOnly($this->to_phone);
             $newtofax = Validation::integerOnly($this->to_fax);
-            $newinvoiceid = $this->generateID();
+            $newsequence = (empty($this->sequence)?false:(($this->sequence == 'true' || $this->sequence == 1)?true:false));
+            if($newsequence){
+                $newinvoiceid = $this->queryGenerateID('invoice_data','InvoiceID');
+            } else {
+                $newinvoiceid = $this->generateID();
+            }
+            
             try {
                 $this->db->beginTransaction();
                 $sql = "INSERT INTO invoice_data (

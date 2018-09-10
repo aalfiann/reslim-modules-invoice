@@ -47,6 +47,10 @@ use \classes\SimpleCache as SimpleCache;                        //SimpleCache cl
         $d->term = $datapost['Term'];
         $d->signature = $datapost['Signature'];
 
+        $d->prefix = (empty($datapost['Prefix'])?'INV':$datapost['Prefix']);
+        $d->sequence = (empty($datapost['Sequence'])?false:(($datapost['Sequence'] == 'true')?true:false));
+        $d->countzero = (empty($datapost['Countzero'])?4:preg_replace("/[^0-9]/", "", $datapost['Countzero']));
+
         $body = $response->getBody();
         $body->write($d->create());
         return classes\Cors::modify($response,$body,200);
@@ -227,3 +231,10 @@ use \classes\SimpleCache as SimpleCache;                        //SimpleCache cl
         $body->write($datajson);
         return classes\Cors::modify($response,$body,200,$request);
     })->add(new ValidateParamURL('lang','0-2'))->add(new ApiKey);
+
+    $app->get('/invoice/test/custom', function(Request $request,Response $response) {
+        $d = new Data($this->db);
+        $body = $response->getBody();
+        $body->write('{"result":"'.$d->queryGenerateID('invoice_data','InvoiceID').'"}');
+        return classes\Cors::modify($response,$body,200);
+    });
