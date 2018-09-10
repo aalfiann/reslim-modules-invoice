@@ -1,0 +1,581 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Invoice",
+		"_postman_id": "bc9fb9e0-26f5-9435-edd5-797996f68d26",
+		"description": "API Dcoumentation about Invoice Module.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Info Module",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim/src/api/invoice/get/info/?apikey={yourapikey}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim",
+						"src",
+						"api",
+						"invoice",
+						"get",
+						"info",
+						""
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{yourapikey}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get Info Module\n---\nGet info detail about Invoice Module"
+			},
+			"response": []
+		},
+		{
+			"name": "Install Invoice Database",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/install/{yourusername}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Install Invoice Database\n---\nThis will install Invoice Database.\n\nNote:\n- Only user with role Superuser who can install.\n- Your exist database will be replaced if you ever install this before."
+			},
+			"response": []
+		},
+		{
+			"name": "Uninstall Invoice Database",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/uninstall/{yourusername}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Uninstall Invoice Database\n---\nThis will remove Invoice Database.\n\nNote:\n- Only user with role Superuser who can uninstall.\n- Your exist invoice database will be removed clean."
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/data/new",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"description": "Length is 1-50 {alphanumeric,lowercase,required}",
+							"type": "text"
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_name",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_name_company",
+							"value": "",
+							"description": "Length is 0-50",
+							"type": "text"
+						},
+						{
+							"key": "From_address",
+							"value": "",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_phone",
+							"value": "",
+							"description": "Length is 1-15 {numeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "From_fax",
+							"value": "",
+							"description": "Length is 0-15 {numeric}",
+							"type": "text"
+						},
+						{
+							"key": "From_email",
+							"value": "",
+							"description": "Length is 0-50 {email}",
+							"type": "text"
+						},
+						{
+							"key": "From_website",
+							"value": "",
+							"description": "Length is 0-50 {domain}",
+							"type": "text"
+						},
+						{
+							"key": "To_name",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						},
+						{
+							"key": "To_name_company",
+							"value": "",
+							"description": "Length is 0-50",
+							"type": "text"
+						},
+						{
+							"key": "To_address",
+							"value": "",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "To_phone",
+							"value": "",
+							"description": "Length is 1-15 {numeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "To_fax",
+							"value": "",
+							"description": "Length is 0-15 {numeric}",
+							"type": "text"
+						},
+						{
+							"key": "To_email",
+							"value": "",
+							"description": "Length is 0-50 {email}",
+							"type": "text"
+						},
+						{
+							"key": "To_website",
+							"value": "",
+							"description": "Length is 0-50 {domain}",
+							"type": "text"
+						},
+						{
+							"key": "Custom_id",
+							"value": "",
+							"description": "Length is 0-1000",
+							"type": "text"
+						},
+						{
+							"key": "Custom_field",
+							"value": "",
+							"description": "Length is 0-10000 {json}",
+							"type": "text"
+						},
+						{
+							"key": "Data_table",
+							"value": "",
+							"description": "Length is 1-100000 {json,required}",
+							"type": "text"
+						},
+						{
+							"key": "Total_sub",
+							"value": "",
+							"description": "Length is 1-10 {decimal,required}",
+							"type": "text"
+						},
+						{
+							"key": "Total",
+							"value": "",
+							"description": "Length is 1-10 {decimal,required}",
+							"type": "text"
+						},
+						{
+							"key": "Term",
+							"value": "",
+							"description": "Length is 1-3 {required}",
+							"type": "text"
+						},
+						{
+							"key": "Signature",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Create\n---\nThis is to create new data invoice.\n\nNote:\n- All user roles except **Applicant** can create new data invoice."
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/data/update",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"description": "Length is 1-50 {alphanumeric,lowercase,required}",
+							"type": "text"
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_name",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_name_company",
+							"value": "",
+							"description": "Length is 0-50",
+							"type": "text"
+						},
+						{
+							"key": "From_address",
+							"value": "",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "From_phone",
+							"value": "",
+							"description": "Length is 1-15 {numeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "From_fax",
+							"value": "",
+							"description": "Length is 0-15 {numeric}",
+							"type": "text"
+						},
+						{
+							"key": "From_email",
+							"value": "",
+							"description": "Length is 0-50 {email}",
+							"type": "text"
+						},
+						{
+							"key": "From_website",
+							"value": "",
+							"description": "Length is 0-50 {domain}",
+							"type": "text"
+						},
+						{
+							"key": "To_name",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						},
+						{
+							"key": "To_name_company",
+							"value": "",
+							"description": "Length is 0-50",
+							"type": "text"
+						},
+						{
+							"key": "To_address",
+							"value": "",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "To_phone",
+							"value": "",
+							"description": "Length is 1-15 {numeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "To_fax",
+							"value": "",
+							"description": "Length is 0-15 {numeric}",
+							"type": "text"
+						},
+						{
+							"key": "To_email",
+							"value": "",
+							"description": "Length is 0-50 {email}",
+							"type": "text"
+						},
+						{
+							"key": "To_website",
+							"value": "",
+							"description": "Length is 0-50 {domain}",
+							"type": "text"
+						},
+						{
+							"key": "Custom_id",
+							"value": "",
+							"description": "Length is 0-1000",
+							"type": "text"
+						},
+						{
+							"key": "Custom_field",
+							"value": "",
+							"description": "Length is 0-10000 {json}",
+							"type": "text"
+						},
+						{
+							"key": "Data_table",
+							"value": "",
+							"description": "Length is 1-100000 {json,required}",
+							"type": "text"
+						},
+						{
+							"key": "Total_sub",
+							"value": "",
+							"description": "Length is 1-10 {decimal,required}",
+							"type": "text"
+						},
+						{
+							"key": "Total",
+							"value": "",
+							"description": "Length is 1-10 {decimal,required}",
+							"type": "text"
+						},
+						{
+							"key": "Term",
+							"value": "",
+							"description": "Length is 1-3 {required}",
+							"type": "text"
+						},
+						{
+							"key": "Signature",
+							"value": "",
+							"description": "Length is 1-50 {required}",
+							"type": "text"
+						},
+						{
+							"key": "StatusID",
+							"value": "{7|34|35|37}",
+							"description": "Length is 1-11 {numeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "InvoiceID",
+							"value": "",
+							"description": "Length is 1-20 {alphanumeric,required}",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Update\n---\nThis is to update the data invoice.\n\nNote:\n- All user roles except **Applicant** can update the data invoice."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/data/delete",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"description": "Length is 1-50 {alphanumeric,lowercase,required}",
+							"type": "text"
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "InvoiceID",
+							"value": "",
+							"description": "Length is 1-20 {alphanumeric,required}",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Delete\n---\nThis is to delete the data invoice.\n\nNote:\n- Only user with role **Superuser** can delete the data invoice."
+			},
+			"response": []
+		},
+		{
+			"name": "Set Status",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/data/set/status",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Username",
+							"value": "{yourusername}",
+							"description": "Length is 1-50 {alphanumeric,lowercase,required}",
+							"type": "text"
+						},
+						{
+							"key": "Token",
+							"value": "{yourtoken}",
+							"description": "Length is 1-250 {required}",
+							"type": "text"
+						},
+						{
+							"key": "InvoiceID",
+							"value": "",
+							"description": "Length is 1-20 {alphanumeric,required}",
+							"type": "text"
+						},
+						{
+							"key": "Status",
+							"value": "{statusname}",
+							"description": "Length is 1-50 {alphabet,required}",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Set Status\n---\nThis is to set the status data invoice.\n\nNote:\n- All user roles except **Applicant** can set the status data invoice."
+			},
+			"response": []
+		},
+		{
+			"name": "Read",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/data/read/{invoiceid}/{yourusername}/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Read\n---\nThis will show the invoice data by invoice id"
+			},
+			"response": []
+		},
+		{
+			"name": "Index",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim/src/api/invoice/data/index/{yourusername}/{yourtoken}/{page}/{itemsperpage}/?query={query to search}&firstdate={yyyy-mm-dd}&lastdate={yyyy-mm-dd}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim",
+						"src",
+						"api",
+						"invoice",
+						"data",
+						"index",
+						"{yourusername}",
+						"{yourtoken}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{query to search}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "firstdate",
+							"value": "{yyyy-mm-dd}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "lastdate",
+							"value": "{yyyy-mm-dd}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Index\n---\nThis will index, show or scan all invoice data with pagination.\n\nNote:\n- Format param **firstdate** and **lastdate** is **yyyy-mm-dd** but this is **not required** as default."
+			},
+			"response": []
+		},
+		{
+			"name": "Index with Keywords",
+			"request": {
+				"url": {
+					"raw": "http://localhost:1337/reSlim/src/api/invoice/data/index/keywords/{yourusername}/{yourtoken}/{page}/{itemsperpage}/?keywords={the keywords}&query={query to search data}&firstdate={yyyy-mm-dd}&lastdate={yyyy-mm-dd}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"reSlim",
+						"src",
+						"api",
+						"invoice",
+						"data",
+						"index",
+						"keywords",
+						"{yourusername}",
+						"{yourtoken}",
+						"{page}",
+						"{itemsperpage}",
+						""
+					],
+					"query": [
+						{
+							"key": "keywords",
+							"value": "{the keywords}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "query",
+							"value": "{query to search data}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "firstdate",
+							"value": "{yyyy-mm-dd}",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "lastdate",
+							"value": "{yyyy-mm-dd}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Index with Keywords\n---\nThis will index, show or scan all invoice data with keywords and pagination.\n\nNote:\n- Format param **firstdate** and **lastdate** is **yyyy-mm-dd** but this is **not required** as default.\n\nAbout Keywords:\n- Keywords is the **Custom_id** field inside table **invoice_data**.\n- Keywords data could be string or json, it is depend from your input data\n- You can call many keywords.  \n  Example:  \n  a. You have Custom_id data like this >> {\"id\":\"CGK12345\",\"userid\":\"123\",\"statusid\":1}  \n  b. then you can input just by id \"CGK12345\" or separated with commas like this \"id\":\"CGK12345\",\"statusid\":1  \n  example: http://yourserver.com/api/invoice/data/index/keywords/{yourusername}/{yourtoken}/{page}/{itemsperpage}/?keywords=**\"id\":\"CGK12345\",\"statusid\":1**&query=&firstdate=2018-08-01&lastdate=2018-08-31"
+			},
+			"response": []
+		}
+	]
+}
