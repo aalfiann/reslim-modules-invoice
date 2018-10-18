@@ -218,14 +218,14 @@ use \classes\SimpleCache as SimpleCache;                        //SimpleCache cl
     });
     // GET api to read single data for public user (include cache)
     $app->map(['GET','OPTIONS'],'/invoice/data/read/{id}/', function (Request $request, Response $response) {
-        $d = new Data($this->db);
-        $d->lang = (empty($_GET['lang'])?$this->settings['language']:$_GET['lang']);
-        $d->invoiceid = $request->getAttribute('id');
         $body = $response->getBody();
         $response = $this->cache->withEtag($response, $this->etag.'-'.trim($_SERVER['REQUEST_URI'],'/'));
         if (SimpleCache::isCached(300,["apikey","lang"])){
             $datajson = SimpleCache::load(["apikey","lang"]);
         } else {
+            $d = new Data($this->db);
+            $d->lang = (empty($_GET['lang'])?$this->settings['language']:$_GET['lang']);
+            $d->invoiceid = $request->getAttribute('id');
             $datajson = SimpleCache::save($d->readPublic(),["apikey","lang"],null,300);
         }
         $body->write($datajson);
