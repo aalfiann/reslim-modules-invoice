@@ -501,7 +501,7 @@ use PDO;
                             a.To_name,a.To_name_company,a.To_address,a.To_phone,a.To_fax,a.To_email,a.To_website,
                             a.Total_sub,a.Total,a.Term,date_add(a.Created_at, INTERVAL a.Term DAY) as Due_date,
                             a.Signature,a.StatusID,b.Status,a.Created_at,a.Created_by,a.Updated_at,a.Updated_by,a.Updated_sys,
-                            a.Custom_id,a.Custom_field,a.Data_table 
+                            a.Custom_id,a.Custom_field 
                         FROM invoice_data a
                         INNER JOIN core_status b ON a.StatusID = b.StatusID
                         WHERE 
@@ -522,7 +522,7 @@ use PDO;
 						$pagination->totalRow = $single['TotalRow'];
 						$pagination->page = $this->page;
 						$pagination->itemsPerPage = $this->itemsPerPage;
-						$pagination->fetchAllAssoc = $this->modifyJsonStringInArray($stmt2->fetchAll(PDO::FETCH_ASSOC),['Custom_id','Custom_field','Data_table']);
+						$pagination->fetchAllAssoc = $this->modifyJsonStringInArray($stmt2->fetchAll(PDO::FETCH_ASSOC),['Custom_id','Custom_field']);
 						$data = $pagination->toDataArray();
 					} else {
 						$data = [
@@ -586,7 +586,7 @@ use PDO;
                             a.To_name,a.To_name_company,a.To_address,a.To_phone,a.To_fax,a.To_email,a.To_website,
                             a.Total_sub,a.Total,a.Term,date_add(a.Created_at, INTERVAL a.Term DAY) as Due_date,
                             a.Signature,a.StatusID,b.Status,a.Created_at,a.Created_by,a.Updated_at,a.Updated_by,a.Updated_sys,
-                            a.Custom_id,a.Custom_field,a.Data_table 
+                            a.Custom_id,a.Custom_field 
                         FROM invoice_data a
                         INNER JOIN core_status b ON a.StatusID = b.StatusID
                         WHERE 
@@ -601,7 +601,7 @@ use PDO;
 						$pagination->totalRow = $single['TotalRow'];
 						$pagination->page = $this->page;
 						$pagination->itemsPerPage = $this->itemsPerPage;
-						$pagination->fetchAllAssoc = $this->modifyJsonStringInArray($stmt2->fetchAll(PDO::FETCH_ASSOC),['Custom_id','Custom_field','Data_table']);
+						$pagination->fetchAllAssoc = $this->modifyJsonStringInArray($stmt2->fetchAll(PDO::FETCH_ASSOC),['Custom_id','Custom_field']);
 						$data = $pagination->toDataArray();
 					} else {
 						$data = [

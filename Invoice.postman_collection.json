@@ -435,6 +435,17 @@
 			"response": []
 		},
 		{
+			"name": "Show Option Status",
+			"request": {
+				"url": "http://localhost:1337/reSlim/src/api/invoice/option/data/status/{yourtoken}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Show Option Status\n---\nTo get data list status to be use for manage the data invoice."
+			},
+			"response": []
+		},
+		{
 			"name": "Set Status",
 			"request": {
 				"url": "http://localhost:1337/reSlim/src/api/invoice/data/set/status",
